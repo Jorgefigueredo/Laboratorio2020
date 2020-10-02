@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1601609854 source:c:\users\figue\desktop\utn fra\laboratorio2020\tp2 laboratorio\trabajo practico 2\main.c
+	"ArrayEmployees.h"
+
+1601662475 c:\users\figue\desktop\utn fra\laboratorio2020\tp2 laboratorio\trabajo practico 2\arrayemployees.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+
+1601658804 source:c:\users\figue\desktop\utn fra\laboratorio2020\tp2 laboratorio\trabajo practico 2\arrayemployees.c
+	<string.h>
+	"ArrayEmployees.h"
+
