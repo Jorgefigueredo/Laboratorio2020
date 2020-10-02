@@ -1,5 +1,6 @@
 #include <string.h>
 #include "ArrayEmployees.h"
+#include <ctype.h>
 
 int initEmployees(Employee listaDeEmpleados[], int size)
 {
@@ -22,6 +23,7 @@ int initEmployees(Employee listaDeEmpleados[], int size)
 
 void mainMenu(Employee listaDeEmpleados[], int size)
 {
+    char auxOpcionMenuPrincipal;
     int opcionMenuPrincipal;
     int auxIsEmpty;
     int employeeFlag = 0;
@@ -36,14 +38,9 @@ void mainMenu(Employee listaDeEmpleados[], int size)
         printf("4) Informar\n");
         printf("5) Salir\n");
         printf("\nElija una opcion: ");
-        scanf("%1d", &opcionMenuPrincipal);
+        scanf("%1s", &auxOpcionMenuPrincipal);
 
-        while (opcionMenuPrincipal < 0 || opcionMenuPrincipal > 5) //Validacion de opcion elegida.
-        {
-            printf("\nERROR: Opcion no valida. Por favor, ingrese un valor entre 1 y 5.");
-            scanf("%1d", &opcionMenuPrincipal);
-        };
-
+        opcionMenuPrincipal = validationRangeNumbers(auxOpcionMenuPrincipal, 1, 5);
         switch (opcionMenuPrincipal)
         {
             case 1:
@@ -113,36 +110,49 @@ void loadEmployee(Employee listaDeEmpleados[], int size)
     char lastname[51];
     float salary;
     int sector;
-    int id = getNextEmployeeFreeSlot(listaDeEmpleados, size);
+    char retry;
 
-    if(id != -1)
+    do
     {
-        printf("CARGA DE EMPLEADO\n");
-        printf("\nPrimer nombre: ");
-        fflush(stdin);
-        scanf("%s", name);
-
-        printf("\nApellido: ");
-        fflush(stdin);
-        scanf("%s", lastname);
-
-        printf("\nSalario: $");
-        scanf("%f", &salary);
-
-        printf("\nSector: ");
-        scanf("%d", &sector);
-
-        id = id + 1; //correccion primer Id
-        int r = addEmployee(listaDeEmpleados, size, id, name, lastname, salary, sector);
-        if(r!=0)
+        int id = getNextEmployeeFreeSlot(listaDeEmpleados, size);
+        if(id != -1)
         {
-            printf("ERROR: Ocurrio un error al intentar agregar un empleado.");
+            printf("CARGA DE EMPLEADO\n");
+            printf("\nPrimer nombre: ");
+            fflush(stdin);
+            scanf("%s", name);
+
+            printf("\nApellido: ");
+            fflush(stdin);
+            scanf("%s", lastname);
+
+            printf("\nSalario: $");
+            scanf("%f", &salary);
+
+            printf("\nSector: ");
+            scanf("%d", &sector);
+
+            id = id + 1; //correccion primer Id
+            int r = addEmployee(listaDeEmpleados, size, id, name, lastname, salary, sector);
+            if(r!=0)
+            {
+                printf("ERROR: Ocurrio un error al intentar agregar un empleado.");
+            }
         }
-    }
-    else
-    {
-        printf("\nERROR: No hay mas lugar disponible.");
-    }
+        else
+        {
+            printf("\nERROR: No hay mas lugar disponible.");
+        }
+
+        printf("\nDesea agregar otro empleado? [S/N]");
+        scanf("%s", &retry);
+        while(retry != 'S' && retry != 's' && retry != 'N' && retry != 'n')
+        {
+            printf("ERROR: Opcion no valida. Por favor, ingrese S si desea agregar un nuevo empleado o N para volver al menu principal.\n");
+            scanf("%s", &retry);
+        }
+    }while (retry == 'S' || retry == 's');
+
 }
 
 int addEmployee(Employee listaDeEmpleados[], int size, int id, char name[], char lastname[], float salary, int sector)
@@ -219,9 +229,6 @@ void loadEmployeeId(Employee listaDeEmpleados[], int size, int optionMenu)
 
 int findEmployeeById(Employee listaDeEmpleados[], int size, int id)
 {
-
-
-
     int response = 0;
     char retry;
     int optionToUpdate;
@@ -397,23 +404,19 @@ int removeEmployee(Employee listaDeEmpleados[], int size, int id)
 
 void inforMenu(Employee listaDeEmpleados[], int size)
 {
-
-        int opcionMenuInformar;
+    char opcionMenuInformar;
  do
     {
 
 
     printf("\nQue desea hacer\n");
-    printf("1- Lista de Empleados ordenados alfabeticamente por apellido y sector. \n"
+    printf("\n1- Lista de Empleados ordenados alfabeticamente por apellido y sector. \n"
            "2- Total, promedio de salarios y cuantos superan ese promedio\n"
            "3- Volver.\n");
 
-        scanf("%1d", &opcionMenuInformar);
+        scanf("%1s", &opcionMenuInformar);
 
-        while (opcionMenuInformar < 0 || opcionMenuInformar > 3) {
-            printf("\nOpcion no valida. Por favor, ingrese un valor entre 1 y 3.");
-            scanf("%1d", &opcionMenuInformar);
-        };
+        opcionMenuInformar =validationRangeNumbers(opcionMenuInformar, 1, 3);
 
      //Switch opcionMenuInformar
 
@@ -449,7 +452,6 @@ void loadOrder(Employee listaDeEmpleados[], int size)
         r = sortEmployees(listaDeEmpleados, size, order);
     } while(r != -1);
 }
-
 
 int sortEmployees(Employee listaDeEmpleados[], int size, int order)
 {
@@ -600,7 +602,7 @@ void inforSalary(Employee listaDeEmpleados[], int size)
 
     countMaxPromedyEmployee = countEmployeeMaxPromedy(listaDeEmpleados, size, promedySalary);
 
-    printf("\nTotal de sueldo de todos los empleados: $%.2f\nPromedio total de los salarios de todos los empleados: %.2f \nLa cantidad de Empleados que superan el sueldo promedio son: %d"
+    printf("\nTotal de sueldo de todos los empleados: $%.2f\nPromedio total de los salarios de todos los empleados: %.2f \nLa cantidad de Empleados que superan el sueldo promedio son: %d\n"
            , salarySumTotal,  promedySalary , countMaxPromedyEmployee);
 
 }
@@ -622,3 +624,23 @@ int countEmployeeMaxPromedy(Employee listaDeEmpleados[], int size, float promedy
     }
     return countMaxPromedyEmployee;
 }
+
+int validationRangeNumbers(char inputChar, int rangeOne, int rangeTwo)
+{
+    int auxNumber;
+
+    while(!isdigit(inputChar))
+    {
+        printf("\nERROR: Solo se permiten digitos. Por favor, ingrese un valor entre %d y %d.\n" , rangeOne, rangeTwo);
+        scanf("%1s", &inputChar);
+    }
+
+    auxNumber = atoi(&inputChar);
+    while(auxNumber < rangeOne || auxNumber > rangeTwo) //Validacion de opcion elegida.
+    {
+        printf("\nERROR: Opcion no valida. Por favor, ingrese un valor entre %d y %d.\n" , rangeOne, rangeTwo);
+        scanf("\n%1d", &auxNumber);
+    };
+    return auxNumber;
+}
+

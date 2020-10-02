@@ -152,7 +152,8 @@ void inforSalary(Employee[], int);
  */
 int countEmployeeMaxPromedy(Employee[], int, float);
 
+int validationRangeNumbers(char, int, int);
 
-
+int validationOnlyNumbers(char number[]);
 
 

@@ -12,3 +12,17 @@
 	<string.h>
 	"ArrayEmployees.h"
 
+1601609854 source:c:\users\figue\desktop\utn fra\laboratorio2020\tp2 laboratorio\main.c
+	"ArrayEmployees.h"
+
+1601680544 c:\users\figue\desktop\utn fra\laboratorio2020\tp2 laboratorio\arrayemployees.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+
+1601682876 source:c:\users\figue\desktop\utn fra\laboratorio2020\tp2 laboratorio\arrayemployees.c
+	<string.h>
+	"ArrayEmployees.h"
+	<ctype.h>
+
