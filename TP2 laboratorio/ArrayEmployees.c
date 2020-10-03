@@ -472,37 +472,30 @@ int sortEmployees(Employee listaDeEmpleados[], int size, int order)
         {
             for(j=i+1; j<size; j++)
             {
+
+                if(listaDeEmpleados[i].sector>listaDeEmpleados[j].sector)
+                                {
+                                    auxSector = listaDeEmpleados[i];
+                                    listaDeEmpleados[i] = listaDeEmpleados[j];
+                                    listaDeEmpleados[j] = auxSector;
+                                }
                     if(listaDeEmpleados[i].sector == listaDeEmpleados[j].sector)
                     {
-                            if(strcmp(listaDeEmpleados[i].lastName, listaDeEmpleados[j].lastName)<0 && listaDeEmpleados[i].isEmpty != 1)
+                            if(strcmp(listaDeEmpleados[i].lastName, listaDeEmpleados[j].lastName)>0 )
                             {
                                 auxLastName = listaDeEmpleados[i];
                                 listaDeEmpleados[i] = listaDeEmpleados[j];
                                 listaDeEmpleados[j] = auxLastName;
+
+
                             }
+
+
                     }
 
             }
         }
-        for(i=0;i<size-1;i++)
-        {
-        for(j=i+1; j<size; j++)
-        {
-            if(listaDeEmpleados[i].sector == listaDeEmpleados[j].sector)
-            {
 
-                if(strcmp(listaDeEmpleados[i].lastName, listaDeEmpleados[j].lastName)<0 && listaDeEmpleados[i].isEmpty != 1)
-                {
-                    auxSector = listaDeEmpleados[i];
-                    listaDeEmpleados[i] = listaDeEmpleados[j];
-                    listaDeEmpleados[j] = auxSector;
-                }
-
-            }
-
-        }
-
-    }
         printEmployees(listaDeEmpleados, size);
         response= -1;
 
@@ -511,11 +504,18 @@ int sortEmployees(Employee listaDeEmpleados[], int size, int order)
 
         for(i=0;i<size-1;i++)
         {
+
             for(j=i+1; j<size; j++)
             {
+
+                   if(listaDeEmpleados[i].sector<listaDeEmpleados[j].sector)
+                                {
+                                    auxSector = listaDeEmpleados[i];
+                                    listaDeEmpleados[i] = listaDeEmpleados[j];
+                                    listaDeEmpleados[j] = auxSector;
                     if(listaDeEmpleados[i].sector == listaDeEmpleados[j].sector)
                     {
-                            if(strcmp(listaDeEmpleados[i].lastName, listaDeEmpleados[j].lastName)>0 &&  listaDeEmpleados[i].isEmpty != 1)
+                            if(strcmp(listaDeEmpleados[i].lastName, listaDeEmpleados[j].lastName)<0 )
                             {
                                 auxLastName = listaDeEmpleados[i];
                                 listaDeEmpleados[i] = listaDeEmpleados[j];
@@ -524,24 +524,6 @@ int sortEmployees(Employee listaDeEmpleados[], int size, int order)
                     }
 
             }
-        }
-
-        for(i=0;i<size-1;i++)
-        {
-        for(j=i+1; j<size; j++)
-        {
-            if(listaDeEmpleados[i].sector == listaDeEmpleados[j].sector)
-            {
-
-                if(strcmp(listaDeEmpleados[i].lastName, listaDeEmpleados[j].lastName)<0 && listaDeEmpleados[i].isEmpty != 1)
-                {
-                    auxSector = listaDeEmpleados[i];
-                    listaDeEmpleados[i] = listaDeEmpleados[j];
-                    listaDeEmpleados[j] = auxSector;
-                }
-
-            }
-
         }
 
     }
