@@ -126,3 +126,49 @@
 
 1533118622 /home/jorge/Escritorio/TP3/Linux_64/parser.h
 
+1604442039 source:/home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/Controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+
+1533118622 /home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/LinkedList.h
+
+1604454334 /home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/Employee.h
+
+1533118622 /home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/parser.h
+
+1604442022 source:/home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1533118622 /home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/Controller.h
+
+1604440328 source:/home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/parser.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1604440000 source:/home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/validacion.c
+	"validacion.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1604440000 /home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/validacion.h
+
+1604454630 source:/home/jorge/Escritorio/laboratorio 2020/Laboratorio2020/TP3 laboratorio/Employee.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+	"Employee.h"
+	"validacion.h"
+
